@@ -1,0 +1,99 @@
+.container {
+    position: relative;
+    background-color: RGB(243, 247, 250);
+    height: 800px;
+    padding: 20px 300px;
+
+    .table-box {
+        background: #FFFFFF;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+
+        .title {
+            height: 24px;
+            vertical-align: middle;
+
+            .title_icon {
+                width: 24px;
+                height: 24px;
+                vertical-align: bottom;
+            }
+
+            .title_span {
+                height: 16px;
+                font-size: 16px;
+                font-family: Source Han Sans CN;
+                font-weight: bold;
+                color: #242733;
+                line-height: 24px;
+                margin-left: 10px;
+            }
+        }
+
+        /*基础信息表格样式*/
+        .personal_table {
+            margin-top: 20px;
+            width: 100%;
+
+            tr {
+                height: 50px;
+
+                td:first-child span:first-child {
+                    min-width: 88px;
+                }
+
+                td:last-child {
+                    border-right: none;
+                }
+
+            }
+
+            :last-child td:nth-child(2) {
+                border-right: none;
+            }
+
+            td {
+                width: 430px;
+                border-right: 1px solid #EDEFF7;
+                border-bottom: 1px solid #EDEFF7;
+
+                div {
+                    display: flex;
+                }
+
+                span {
+                    display: inline-block;
+                }
+
+                :first-child {
+                    min-width: 84px;
+                }
+
+                :last-child span {
+                    min-width: 115px;
+                }
+            }
+
+            .item_name {
+                margin-left: 19px;
+                font-size: 14px;
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #949AB3;
+            }
+
+            .item_value {
+                margin-left: 30px;
+                font-size: 14px;
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #242733;
+                word-wrap: break-word;
+                word-break: break-all;
+            }
+
+        }
+
+    }
+}
