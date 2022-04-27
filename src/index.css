@@ -9,6 +9,11 @@ body {
   min-width: auto;
   margin: 0px auto;
   font: 16px "PingFang SC", "Microsoft YaHei", "Microsoft JhengHei", 黑体, arial, STHeiti, 宋体;
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+  width: 0 !important
 }
 
 code {

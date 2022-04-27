@@ -1,7 +1,6 @@
 .container {
     position: relative;
     background-color: RGB(243, 247, 250);
-    height: 800px;
     padding: 20px 300px;
 
     .table-box {
@@ -54,7 +53,7 @@
             }
 
             td {
-                width: 430px;
+                width: 300px;
                 border-right: 1px solid #EDEFF7;
                 border-bottom: 1px solid #EDEFF7;
 
@@ -95,5 +94,169 @@
 
         }
 
+        /*一般表格样式*/
+        .base_table {
+            margin-top: 20px;
+            width: 100%;
+            text-align: center;
+            border-radius: 10px;
+            overflow: hidden;
+            border-collapse: collapse;
+            /* 消除掉外边框 */
+            border-style: hidden;
+            /* hack一下加个阴影 */
+            box-shadow: 0 0 0 1px #EDEFF7;
+
+            td,
+            th {
+                border: 1px solid #EDEFF7;
+            }
+
+            tr {
+                height: 52px;
+                font-size: 14px;
+                font-family: Source Han Sans CN;
+            }
+
+            :first-child td {
+                font-weight: 400;
+                font-weight: bold;
+                background-color: #E4E7F2;
+            }
+
+        }
+
+        /*步骤条样式*/
+        .step_content {
+            min-width: 800px;
+            margin-left: 30px;
+            margin-top: 20px;
+
+            .step_item {
+                position: relative;
+
+                .position_level {
+                    display: inline-block;
+                    width: 17px;
+                    height: 11px;
+                    font-size: 14px;
+                    font-family: Source Han Sans CN;
+                    font-weight: bold;
+                    color: #383C4D;
+                }
+
+                .bar {
+                    display: inline-block;
+                    margin-left: 20px;
+                    height: 19px;
+                    position: relative;
+                    width: 16px;
+                    align-items: center;
+                    vertical-align: sub;
+
+                    .image {
+                        width: 16px;
+                        height: 16px;
+
+                        img {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            margin: auto;
+                            z-index: 99;
+                        }
+                    }
+
+                    .line {
+                        position: absolute;
+                        width: 1px;
+                        border-radius: 1px;
+                        top: -68px;
+                        height: 72px;
+                        background: #EDEFF7;
+                        left: 7px;
+                    }
+
+                    .first-line {
+                        height: 0px !important;
+                    }
+                }
+
+                .time {
+                    width: 171px;
+                    height: 11px;
+                    font-size: 14px;
+                    font-family: Source Han Sans CN;
+                    font-weight: 400;
+                    color: #383C4D;
+                    line-height: 62px;
+                    margin-left: 20px;
+                }
+
+                .org_position_box {
+                    height: 50px;
+                    padding: 0 20px;
+                    background: #FFFFFF;
+                    border: 1px solid #EDEFF7;
+                    border-radius: 10px;
+                    display: inline-block;
+                    margin: 5px 0 5px 20px;
+
+                    .org_name {
+                        height: 16px;
+                        font-size: 14px;
+                        font-family: Source Han Sans CN;
+                        font-weight: 400;
+                        color: #626880;
+                        line-height: 50px;
+                    }
+
+                    .position {
+                        height: 16px;
+                        font-size: 14px;
+                        font-family: Source Han Sans CN;
+                        font-weight: bold;
+                        color: #626880;
+                        line-height: 50px;
+                    }
+
+                    .type {
+                        height: 16px;
+                        font-size: 14px;
+                        font-family: Source Han Sans CN;
+                        font-weight: 400;
+                        color: #626880;
+                        line-height: 50px;
+                    }
+                }
+            }
+
+        }
+
+        .td-index {
+            width: 60px;
+        }
+
+        .td-time {
+            width: 255px;
+        }
+
+        .min-1 {
+            min-width: 50px;
+        }
+
+        .min-2 {
+            min-width: 100px;
+        }
+
+        .min-3 {
+            min-width: 150px;
+        }
+
+        .min-4 {
+            min-width: 200px;
+        }
     }
 }
