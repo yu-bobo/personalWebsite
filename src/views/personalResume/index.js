@@ -1,9 +1,9 @@
 import './index.less'
-import familyIcon from '../../assets/icons/family.png'
-import educationIcon from '../../assets/icons/education.png'
-import positionIcon from '../../assets/icons/position.png'
-import point1Icon from '../../assets/icons/point1.png'
-import point2Icon from '../../assets/icons/point2.png'
+import familyIcon from '../../assets/images/family.png'
+import educationIcon from '../../assets/images/education.png'
+import positionIcon from '../../assets/images/position.png'
+import point1Icon from '../../assets/images/point1.png'
+import point2Icon from '../../assets/images/point2.png'
 import React, { useState } from "react"
 function PersonalResume() {
     const workStatus = {

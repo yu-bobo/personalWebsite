@@ -1,5 +1,6 @@
+import React from 'react'
 import './index.less'
-function footer(){
+function Fooder(){
     return <footer className="footer">
     <ul className="nav-center">
         <li>教育经历</li>
@@ -9,4 +10,4 @@ function footer(){
     </ul>
 </footer>
 }
-export default footer
+export default Fooder

@@ -5,10 +5,7 @@ function Header() {
     let [count, setNavbar] = useState(0)
     let [city, setCity] = useState('深圳')
     let [wheatherData, setWheatherData] = useState({})
-    let history = useNavigate();
-    function handleRouterPush() {
-        history('/personalResume')
-    }
+    const history = useNavigate();
     function getCity() {
         // 组件挂载时，创建script标签
         const locationScript = document.createElement('script');
@@ -53,8 +50,8 @@ function Header() {
             <ul className="nav-center">
                 <li>教育经历</li>
                 <li>家乡简介</li>
-                <li onClick={handleRouterPush}>个人信息</li>
-                <li>关于{count}</li>
+                <li onClick={() => { history('/personalResume') }}>个人信息</li>
+                <li>关于</li>
             </ul>
             <div className="nav-right">
                 天气预报:
