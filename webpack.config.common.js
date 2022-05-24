@@ -9,17 +9,17 @@ function resolve(relatedPath) {
 
 const webpackConfig = {
     // target: 'node', // 会编译为用于「类 Node.js」环境 默认是web
-    
+
     //entry为webpack解析的入口（解析各种包依赖关系的入口），而不是项目访问的入口
     //官网描述：指示 webpack 应该使用哪个模块，来作为构建其内部依赖图的开始
     entry: {
-        app: [resolve('./src/index.js')],
+        app: [resolve('src/index.js')],
     },
 
     //output为项目打包后的输出位置
     //官网描述：告诉 webpack 在哪里输出它所创建的 bundles，以及如何命名这些文件，默认值为 ./dist
     output: {
-        path: resolve('./dist'), //path为打包后的输出文件夹位置，此处为 ./dist文件夹
+        path: resolve('dist'), //path为打包后的输出文件夹位置，此处为 ./dist文件夹
         filename: 'bundle.js',
         clean: true
     },
@@ -27,7 +27,7 @@ const webpackConfig = {
     plugins: [
         //为项目生成一个可以访问的html文件，否则全是.js文件，没有访问的页面入口。默认为index.html,路径是基于根目录的相对路径
         new HtmlWebpackPlugin({
-            template: './public/index.html',  //引用模板html文件生成项目的入口文件html
+            template: resolve('public/index.html'),  //引用模板html文件生成项目的入口文件html
         }),
         new MiniCssExtractPlugin({
             filename: 'styles/[contenthash].css'
@@ -37,7 +37,7 @@ const webpackConfig = {
         rules: [
             // 解析js
             {
-                test: /\.(js)$/,
+                test: /\.jsx?$/,
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
@@ -71,12 +71,12 @@ const webpackConfig = {
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
                 exclude: /node_modules/,
-                include: [resolve('./src/assets/images')],
+                include: [resolve('src/assets/images')],
                 loader: 'url-loader',
                 options: {
                     limit: 8192,
                     name: '[name].[ext]',
-                    outputPath: './images'
+                    outputPath: resolve('images')
                 }
             },
             //loader-font
@@ -90,7 +90,15 @@ const webpackConfig = {
             },
         ]
     },
-    resolve: {},
+
+    resolve: {
+        // 导入时省略文件后缀配置
+        // extensions: ['js', 'jsx']
+        alias: {
+            "@": resolve('src')
+        }
+    },
+
 }
 
 module.exports = webpackConfig

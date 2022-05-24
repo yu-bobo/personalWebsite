@@ -42,8 +42,82 @@
         .city-play {
             h2 {
                 display: block;
-                margin: 50px auto;
-                width: 130px;
+                margin: 0 auto;
+                margin-top: 30px;
+                width: 200px;
+                text-align: center;
+
+                &::first-letter {
+                    font-size: 30px;
+                    font-weight: 800;
+                    margin-right: 10px;
+                }
+            }
+
+            .slide-content-box {
+                width: 100%;
+                white-space: nowrap;
+                overflow: auto;
+                overflow-x: auto;
+                height: 650px;
+                display: flex;
+                align-items: center;
+
+                .slide-content-item {
+                    display: inline-block;
+                    position: relative;
+
+                    .images-box {
+                        width: 640px;
+                        height: 540px;
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: space-between;
+                        align-items: center;
+                        flex-direction: column;
+
+                        .img {
+                            width: 300px;
+                            height: 200px;
+                            cursor: pointer;
+
+                            img {
+                                width: inherit;
+                                height: inherit;
+                                border-radius: 10px;
+                                transition: all .5;
+
+                                &:hover {
+                                    transform: scale(1.45);
+                                    // z-index: 9999;
+                                }
+                            }
+                        }
+
+
+                    }
+
+                    .img-description {
+                        position: absolute;
+                        height: 80px;
+                        top: 0;
+                        right: 0;
+                        left: 0;
+                        bottom: 0;
+                        margin: auto;
+                        display: flex;
+                        align-items: center;
+                        flex-direction: column;
+                        justify-content: center;
+
+                        p {
+                            width: 100%;
+                            text-align: center;
+                        }
+                    }
+                }
+
+
             }
         }
     }

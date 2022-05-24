@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './index.less'
+import { getCityIndfo } from "@/request/api"
 function Hometown() {
+    useEffect(() => {
+        getCityIndfo().then(data => {
+            console.log(data)
+        })
+    }, []);
     return <div className="home-content">
         <div className="city-item">
             <h1 className="city-name">重庆<span>（中华人民共和国直辖市）</span></h1>
@@ -14,25 +20,47 @@ function Hometown() {
                 </div>
             </div>
             <div className="city-play">
-                <h2>重庆必去景点</h2>
-                <ul>
-                    <li>
+                <h2>玩重庆必去景点</h2>
+                <div className="slide-content-box">
+                    <div className="slide-content-item">
                         <div className="images-box">
-                            <img src="http://yjwwj.itzjj.cn/uploads/userfiles/30/images/pageimg/20200606/30-20060609524L.jpg"></img>
-                            <img src="http://yjwwj.itzjj.cn/uploads/userfiles/30/images/pageimg/20210327/30-21032G511521.jpg"></img>
-                            <img src="http://yjwwj.itzjj.cn/uploads/userfiles/1/images/pageimg/20200622/1-2006221405049.jpg"></img>
-                            <img src="http://yjwwj.itzjj.cn/uploads/userfiles/2709/images/pageimg/20200818/2709-200QP950229.jpg"></img>
+                            <div className="img"><img src="http://yjwwj.itzjj.cn/uploads/userfiles/30/images/pageimg/20200606/30-20060609524L.jpg"></img></div>
+                            <div className="img"><img src="http://yjwwj.itzjj.cn/uploads/userfiles/30/images/pageimg/20210327/30-21032G511521.jpg"></img></div>
+                            <div className="img"><img src="http://yjwwj.itzjj.cn/uploads/userfiles/1/images/pageimg/20200622/1-2006221405049.jpg"></img></div>
+                            <div className="img"><img src="http://yjwwj.itzjj.cn/uploads/userfiles/2709/images/pageimg/20200818/2709-200QP950229.jpg"></img></div>
                         </div>
-                        <p className="attraction">1.【重庆市区】洪崖洞、长江索道、磁器口、解放碑、李子坝轻轨</p>
-                    </li>
-                    <li>2.【奥陶纪园】高空漫步、云端廊桥、玻璃桥、悬崖秋千</li>
-                    <li>3.【武隆景区】天生三桥、龙水峡地缝、仙女山，国家AAAAA景区</li>
-                    <li>4.【蚩尤九黎城】中国最大苗族建筑群，始祖蚩尤遗迹，国家AAAA景区</li>
-                    <li>5.【酉阳桃花源景区 】陶渊明笔下【桃花源记】的原型,龚滩古镇,乌江画廊</li>
-                </ul>
+                        <div className="img-description"><p>【重庆市区】</p><p>洪崖洞、长江索道、磁器口、解放碑、李子坝轻轨</p></div>
+                    </div>
+                    <div className="slide-content-item">
+                        <div className="images-box">
+                            <div className="img"><img src="https://img2.baidu.com/it/u=3837247802,1798577529&fm=253&fmt=auto&app=138&f=PNG?w=440&h=260"></img></div>
+                            <div className="img"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.ytszg.com%2Ffile%2FnewsImg%2Fimage%2F20200508%2F20200508153421_0431.jpg&refer=http%3A%2F%2Fwww.ytszg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1655973845&t=9ea7e35ff0e4795b6df7b2de6e5194cd"></img></div>
+                            <div className="img"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fp1-q.mafengwo.net%2Fs18%2FM00%2F4A%2F07%2FCoUBYGB9F3iAGGFpAA9JgLafFwI163.png%3FimageMogr2%252Fthumbnail%252F%21440x260r%252Fgravity%252FCenter%252Fcrop%252F%21440x260%252Fquality%252F100&refer=http%3A%2F%2Fp1-q.mafengwo.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1655973845&t=8f48dbeecd7d2cf7be96cf810ef8db6e"></img></div>
+                            <div className="img"><img src="https://img0.baidu.com/it/u=2480453035,4191708852&fm=253&fmt=auto&app=138&f=JPG?w=662&h=500"></img></div>
+                        </div>
+                        <div className="img-description"><p>【奥陶纪园】</p><p>高空漫步、云端廊桥、玻璃桥、悬崖秋千</p></div>
+                    </div>
+                    <div className="slide-content-item">
+                        <div className="images-box">
+                            <div className="img"><img src="http://yjwwj.itzjj.cn/uploads/userfiles/2709/images/pageimg/20200818/2709-200QP9512Y.jpg"></img></div>
+                            <div className="img"><img src="http://yjwwj.itzjj.cn/uploads/userfiles/30/images/pageimg/20210327/30-21032G511521.jpg"></img></div>
+                            <div className="img"><img src="http://yjwwj.itzjj.cn/uploads/userfiles/30/images/pageimg/20210327/30-21032G510328.jpg"></img></div>
+                            <div className="img"><img src="http://yjwwj.itzjj.cn/uploads/userfiles/2709/images/pageimg/20200818/2709-200QP950229.jpg"></img></div>
+                        </div>
+                        <div className="img-description"><p>【武隆景区】</p><p>天生三桥、龙水峡地缝、仙女山，国家AAAAA景区</p></div>
+                    </div>
+
+                    {/* <div className="images-box">
+                        <div className="img"><img src="http://yjwwj.itzjj.cn/uploads/userfiles/30/images/pageimg/20210327/30-21032G511521.jpg"></img></div>
+                        <div className="img-description"> <p className="attraction">【奥陶纪园】高空漫步、云端廊桥、玻璃桥、悬崖秋千</p></div>
+                        <li>3.【武隆景区】天生三桥、龙水峡地缝、仙女山，国家AAAAA景区</li>
+                        <li>4.【蚩尤九黎城】中国最大苗族建筑群，始祖蚩尤遗迹，国家AAAA景区</li>
+                        <li>5.【酉阳桃花源景区 】陶渊明笔下【桃花源记】的原型,龚滩古镇,乌江画廊</li>
+                    </div> */}
+                </div>
             </div>
         </div>
-        <div className="home-item"><h1>梁平</h1></div>
+        <div className="city-item"><h1>梁平</h1></div>
     </div>
 }
 export default Hometown
