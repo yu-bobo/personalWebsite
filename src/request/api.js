@@ -1,5 +1,5 @@
 // const path = require('path');
 import serive from "./index";
-export const getCityIndfo = (url, data) => {
-    return serive.get('/hometown.json')
+export const getCityInfo = (url, data) => {
+    return serive.get('/mock/cityinfo')
 }
