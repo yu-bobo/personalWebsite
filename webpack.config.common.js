@@ -98,6 +98,9 @@ const webpackConfig = {
             "@": resolve('src')
         }
     },
+    externals: {
+        jquery: '$',
+    }
 
 }
 

@@ -1,50 +1,75 @@
 import React, { useEffect, useState, useRef } from "react";
 import './index.less'
 import { getCityInfo } from "@/request/api"
-function Hometown() {
-    const [cityInfo, setCityInfo] = useState([])
-    const [canSlide, setCanSlide] = useState(false)
-    const [maginLeft, setMarginLfet] = useState(-120)
+// 滚动条监听
+function handleEventListener() {
+    const canSlide = useRef(false)
+    const maginLeft = useRef(0)
+    const contentReact = useRef()
+    const contentBoxReact = useRef()
+    const isBottom = useRef(false)
     function handleScroll(e) {
-        var scrollT = document.documentElement.scrollTop || document.body.scrollTop;
+        canSlide.current = false
+        // 滚动条距离
+        const scrollT = $(document).scrollTop() || document.body.scrollTop;
+        // 横向滚动块居中距离
+        const centerInstance = contentReact.current.top - (window.screen.height - contentReact.current.height) / 2
         // 滚动条大于横向滚动块区域不再滚动，由横向滚动区域开始横向滚动
-        if ((scrollT > (domRef.current.top - (window.screen.height - domRef.current.height) / 2))) {
-            document.documentElement.scrollTop = domRef.current.top - (window.screen.height - domRef.current.height) / 2
-            setCanSlide(true)
-        } else {
-            setCanSlide(false)
+        if ((scrollT > centerInstance) && !isBottom.current) {
+            $(document).scrollTop(centerInstance)
+            canSlide.current = true
+        }
+
+        if ((scrollT < centerInstance) && maginLeft.current < 0) {
+            $(document).scrollTop(centerInstance)
+            canSlide.current = true
         }
     }
+    // 横向滚动块滚动
     function handleMouseWheel(e) {
+        // todo 根据鼠标滚动改变滚动条距离
         if (e.wheelDelta < 0) {
-            // 横向滚滚动块滚动
-            if (canSlide) {
-                console.log('k可以滚动了')
+            const scrollTop = $(document).scrollTop()
+            $(document).scrollTop(10 + scrollTop);
+            console.log($(document).scrollTop())
+        }
+        if (e.wheelDelta < 0 && canSlide.current) {
+            // 判断横向滚动是否滚动到底部
+            if (maginLeft.current + contentBoxReact.current <= contentReact.current.width) {
+                isBottom.current = true
+            } else {
+                maginLeft.current -= 20
+                $('.slide-content-box')[0].style.marginLeft = maginLeft.current + 'px'
             }
-            setMarginLfet((maginLeft) => { maginLeft - 20 })
-            document.getElementsByClassName('slide-content-box')[0].style.marginLeft = maginLeft + 'px'
-            console.log("鼠标滚轮后滚")
-        } else if (e.wheelDelta > 0) {
-            console.log("鼠标滚轮前滚")
+        }
+        if (e.wheelDelta > 0 && maginLeft.current < 0 && canSlide.current) {
+            isBottom.current = false
+            maginLeft.current += 20
+            $('.slide-content-box')[0].style.marginLeft = maginLeft.current + 'px'
         }
     }
-    const domRef = useRef();
     useEffect(() => {
-        const domReact = document.getElementsByClassName('slide-content')[0].getBoundingClientRect()
-        domRef.current = domReact
-        console.log(domRef.current)
+        contentReact.current = $('.slide-content')[0].getBoundingClientRect()
+        // todo 元素隐藏部分的宽度取不到
+        contentBoxReact.current = $('.slide-content-box .slide-content-item')[0].offsetWidth * $('.slide-content-box .slide-content-item').length
+        console.log(contentBoxReact.current)
+        window.onscroll = handleScroll
+
         // 监听鼠标滚轮事件 
         window.onmousewheel = handleMouseWheel
-    }, [])
-    useEffect(() => {
-        getCityInfo().then(res => {
-            setCityInfo(res.data)
-        })
-        window.onscroll = handleScroll
         return () => {
             // 移除监听
             // window.removeEventListener('onScroll', handleScroll)
         };
+    }, [])
+}
+function Hometown() {
+    const [cityInfo, setCityInfo] = useState([])
+    handleEventListener()
+    useEffect(() => {
+        getCityInfo().then(res => {
+            setCityInfo(res.data)
+        })
     }, []);
     const cityItem = cityInfo.map((item, itemIndex) => {
         return <div className="city-item" key={itemIndex}>
@@ -77,7 +102,7 @@ function Hometown() {
         </div>
     })
     return <div className="home-content">
-        {cityItem}
+        {/* {cityItem} */}
         <div className="city-item">
             <h1 className="city-name">重庆<span>（中华人民共和国直辖市）</span></h1>
             <div className="city-introduce">
@@ -128,6 +153,48 @@ function Hometown() {
                         <li>4.【蚩尤九黎城】中国最大苗族建筑群，始祖蚩尤遗迹，国家AAAA景区</li>
                         <li>5.【酉阳桃花源景区 】陶渊明笔下【桃花源记】的原型,龚滩古镇,乌江画廊</li>
                     </div> */}
+                    </div>
+                </div>
+                <h2>吃重庆必吃榜</h2>
+                <div className="eat-contentbox">
+                    <div className="eat-item">
+                        <div className="eat-img-static">
+                            <h3 className="eat-rank">TOP1</h3>
+                            <img className="eat-img" src="https://img1.baidu.com/it/u=2818896431,1150756753&fm=253&fmt=auto&app=138&f=JPEG?w=692&h=500"></img>
+                            <p className="eat-name">毛血旺</p>
+                        </div>
+                        <div className="eat-video-overlay">
+                            <video className="vehicle-item-video" poster="https://img1.baidu.com/it/u=2818896431,1150756753&fm=253&fmt=auto&app=138&f=JPEG?w=692&h=500" playsInline autoPlay loop muted>
+                                <source src="https://www.nio.cn/cdn-static/www/index/video/et7.mp4" type="video/mp4" />
+                            </video>
+                            <p className="vehicle-item-video-title">READY FOR TOMORROW</p>
+                        </div>
+                    </div>
+                    <div className="eat-item">
+                        <div className="eat-img-static">
+                            <h3 className="eat-rank">TOP1</h3>
+                            <img className="eat-img" src="https://img1.baidu.com/it/u=2818896431,1150756753&fm=253&fmt=auto&app=138&f=JPEG?w=692&h=500"></img>
+                            <p className="eat-name">毛血旺</p>
+                        </div>
+                        <div className="eat-video-overlay">
+                            <video className="vehicle-item-video" poster="https://img1.baidu.com/it/u=2818896431,1150756753&fm=253&fmt=auto&app=138&f=JPEG?w=692&h=500" playsInline autoPlay loop muted>
+                                <source src="https://www.nio.cn/cdn-static/www/index/video/et7.mp4" type="video/mp4" />
+                            </video>
+                            <p className="vehicle-item-video-title">READY FOR TOMORROW</p>
+                        </div>
+                    </div>
+                    <div className="eat-item">
+                        <div className="eat-img-static">
+                            <h3 className="eat-rank">TOP1</h3>
+                            <img className="eat-img" src="https://img1.baidu.com/it/u=2818896431,1150756753&fm=253&fmt=auto&app=138&f=JPEG?w=692&h=500"></img>
+                            <p className="eat-name">毛血旺</p>
+                        </div>
+                        {/* <div className="eat-video-overlay">
+                            <video className="vehicle-item-video" poster="https://img1.baidu.com/it/u=2818896431,1150756753&fm=253&fmt=auto&app=138&f=JPEG?w=692&h=500" playsInline autoPlay loop muted>
+                                <source src="https://www.nio.cn/cdn-static/www/index/video/et7.mp4" type="video/mp4" />
+                            </video>
+                            <p className="vehicle-item-video-title">READY FOR TOMORROW</p>
+                        </div> */}
                     </div>
                 </div>
             </div>

@@ -66,6 +66,7 @@
                     display: flex;
                     align-items: center;
                     height: 650px;
+                    transition: all .5s ease-in-out;
 
                     .slide-content-item {
                         display: inline-block;
@@ -126,6 +127,83 @@
 
             }
 
+            .eat-contentbox {
+                position: relative;
+                width: 1000px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                margin: auto;
+                margin-top: 30px;
+
+                .eat-item {
+                    position: relative;
+                    width: 500px;
+                    height: 500px;
+                    display: flex;
+                    justify-content: center;
+
+                    .eat-img-static {
+                        width: 300px;
+                        display: flex;
+                        align-items: center;
+                        flex-direction: column;
+                        justify-content: center;
+
+                        .eat-rank {
+                            height: 50px;
+                            line-height: 50px;
+                            display: inline-block;
+                            font-weight: 600;
+                            font-size: 25px;
+                        }
+
+                        .eat-img {
+                            width: 300px;
+                            height: 300px;
+                        }
+
+                        .eat-name {
+                            height: 40px;
+                            line-height: 40px;
+                            font-size: 18px;
+                        }
+
+                    }
+
+                    .eat-video-overlay {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 500px;
+
+                        .vehicle-item-video {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover
+                        }
+
+                        .vehicle-item-video-title {
+                            position: absolute;
+                            color: white;
+                            font-size: 18px;
+                            font-weight: 300;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            margin:  auto;
+                            height: 30px;
+                            line-height: 30px;
+                            text-align: center;
+                        }
+                    }
+                }
+            }
+
         }
+
     }
 }
