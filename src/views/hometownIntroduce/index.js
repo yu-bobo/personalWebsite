@@ -1,75 +1,88 @@
 import React, { useEffect, useState, useRef } from "react";
 import './index.less'
 import { getCityInfo } from "@/request/api"
-// 滚动条监听
-function handleEventListener() {
+
+function handleMouseListener() {
+    $('.eat-contentbox')[0]?.addEventListener('mouseenter', (e) => {
+        if (e.target.className === 'eat-item') {
+            e.target.children[1].style.display = 'block'
+        }
+    }, true)
+    $('.eat-contentbox')[0]?.addEventListener('mouseleave', (e) => {
+        if (e.target.className === 'eat-item') {
+            e.target.children[1].style.display = 'none'
+        }
+    }, true)
+}
+
+function Hometown() {
+    const [cityInfo, setCityInfo] = useState([])
     const canSlide = useRef(false)
     const maginLeft = useRef(0)
     const contentReact = useRef()
     const contentBoxReact = useRef()
     const isBottom = useRef(false)
-    function handleScroll(e) {
-        canSlide.current = false
-        // 滚动条距离
-        const scrollT = $(document).scrollTop() || document.body.scrollTop;
-        // 横向滚动块居中距离
-        const centerInstance = contentReact.current.top - (window.screen.height - contentReact.current.height) / 2
-        // 滚动条大于横向滚动块区域不再滚动，由横向滚动区域开始横向滚动
-        if ((scrollT > centerInstance) && !isBottom.current) {
-            $(document).scrollTop(centerInstance)
-            canSlide.current = true
+    const dom = useRef()
+
+    useEffect(() => {
+        async function fetchData() {
+            // You can await here
+            await getCityInfo().then(res => {
+                setCityInfo(res.data)
+            })
+            contentReact.current = $('.slide-content')[0]?.getBoundingClientRect()
+            // todo 元素隐藏部分的宽度取不到
+            contentBoxReact.current = $('.slide-content-box .slide-content-item')[0]?.offsetWidth * $('.slide-content-box .slide-content-item').length
+            console.log(contentBoxReact.current)
+            handleMouseListener()
+            // ...
+        }
+        fetchData();
+        window.onscroll = (e) => {
+            canSlide.current = false
+            // 滚动条距离
+            const scrollT = $(document).scrollTop() || document.body.scrollTop;
+            // 横向滚动块居中距离
+            const centerInstance = contentReact.current.top - (window.screen.height - contentReact.current.height) / 2
+            // 滚动条大于横向滚动块区域不再滚动，由横向滚动区域开始横向滚动
+            if ((scrollT > centerInstance) && !isBottom.current) {
+                $(document).scrollTop(centerInstance)
+                canSlide.current = true
+            }
+
+            if ((scrollT < centerInstance) && maginLeft.current < 0) {
+                $(document).scrollTop(centerInstance)
+                canSlide.current = true
+            }
         }
 
-        if ((scrollT < centerInstance) && maginLeft.current < 0) {
-            $(document).scrollTop(centerInstance)
-            canSlide.current = true
-        }
-    }
-    // 横向滚动块滚动
-    function handleMouseWheel(e) {
-        // todo 根据鼠标滚动改变滚动条距离
-        if (e.wheelDelta < 0) {
-            const scrollTop = $(document).scrollTop()
-            $(document).scrollTop(10 + scrollTop);
-            console.log($(document).scrollTop())
-        }
-        if (e.wheelDelta < 0 && canSlide.current) {
-            // 判断横向滚动是否滚动到底部
-            if (maginLeft.current + contentBoxReact.current <= contentReact.current.width) {
-                isBottom.current = true
-            } else {
-                maginLeft.current -= 20
+        // 监听鼠标滚轮事件 
+        window.onmousewheel = (e) => {
+            // todo 根据鼠标滚动改变滚动条距离
+            if (e.wheelDelta < 0) {
+                const scrollTop = $(document).scrollTop()
+                $(document).scrollTop(10 + scrollTop);
+                // console.log($(document).scrollTop())
+            }
+            if (e.wheelDelta < 0 && canSlide.current) {
+                // 判断横向滚动是否滚动到底部
+                if (maginLeft.current + contentBoxReact.current <= contentReact.current.width) {
+                    isBottom.current = true
+                } else {
+                    maginLeft.current -= 20
+                    $('.slide-content-box')[0].style.marginLeft = maginLeft.current + 'px'
+                }
+            }
+            if (e.wheelDelta > 0 && maginLeft.current < 0 && canSlide.current) {
+                isBottom.current = false
+                maginLeft.current += 20
                 $('.slide-content-box')[0].style.marginLeft = maginLeft.current + 'px'
             }
         }
-        if (e.wheelDelta > 0 && maginLeft.current < 0 && canSlide.current) {
-            isBottom.current = false
-            maginLeft.current += 20
-            $('.slide-content-box')[0].style.marginLeft = maginLeft.current + 'px'
-        }
-    }
-    useEffect(() => {
-        contentReact.current = $('.slide-content')[0].getBoundingClientRect()
-        // todo 元素隐藏部分的宽度取不到
-        contentBoxReact.current = $('.slide-content-box .slide-content-item')[0].offsetWidth * $('.slide-content-box .slide-content-item').length
-        console.log(contentBoxReact.current)
-        window.onscroll = handleScroll
-
-        // 监听鼠标滚轮事件 
-        window.onmousewheel = handleMouseWheel
         return () => {
             // 移除监听
             // window.removeEventListener('onScroll', handleScroll)
         };
-    }, [])
-}
-function Hometown() {
-    const [cityInfo, setCityInfo] = useState([])
-    handleEventListener()
-    useEffect(() => {
-        getCityInfo().then(res => {
-            setCityInfo(res.data)
-        })
     }, []);
     const cityItem = cityInfo.map((item, itemIndex) => {
         return <div className="city-item" key={itemIndex}>
@@ -98,12 +111,31 @@ function Hometown() {
                         })}
                     </div>
                 </div>
+                <h2>吃重庆必吃榜</h2>
+                <div className="eat-contentbox">
+                    {item.eatList.map((eat, eatIndex) => {
+                        return <div className="eat-item" key={eatIndex}>
+                            <div className="eat-img-static">
+                                <h3 className="eat-rank">TOP{eatIndex + 1}</h3>
+                                <img className="eat-img" src={eat.eatImg}></img>
+                                <p className="eat-name">{eat.eatName}</p>
+                            </div>
+                            <div className="eat-video-overlay">
+                                <video className="vehicle-item-video" poster={eat.eatImg} playsInline autoPlay loop muted>
+                                    <source src={eat.videoUrl} type="video/mp4" />
+                                </video>
+                                <p className="vehicle-item-video-title">{eat.videoTitle}</p>
+                            </div>
+                        </div>
+                    })}
+
+                </div>
             </div>
         </div>
     })
     return <div className="home-content">
-        {/* {cityItem} */}
-        <div className="city-item">
+        {cityItem}
+        {/* <div className="city-item">
             <h1 className="city-name">重庆<span>（中华人民共和国直辖市）</span></h1>
             <div className="city-introduce">
                 <div className="city-img"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01ad585f4b04e811013e3187641cd5.jpg%401280w_1l_2o_100sh.jpg&refer=http%3A%2F%2Fimg.zcool.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1655890231&t=bf2f0b2436ac9ac4cbf9c054b97aa984"></img></div>
@@ -146,13 +178,13 @@ function Hometown() {
                             <div className="img-description"><p>【武隆景区】</p><p>天生三桥、龙水峡地缝、仙女山，国家AAAAA景区</p></div>
                         </div>
 
-                        {/* <div className="images-box">
+                        <div className="images-box">
                         <div className="img"><img src="http://yjwwj.itzjj.cn/uploads/userfiles/30/images/pageimg/20210327/30-21032G511521.jpg"></img></div>
                         <div className="img-description"> <p className="attraction">【奥陶纪园】高空漫步、云端廊桥、玻璃桥、悬崖秋千</p></div>
                         <li>3.【武隆景区】天生三桥、龙水峡地缝、仙女山，国家AAAAA景区</li>
                         <li>4.【蚩尤九黎城】中国最大苗族建筑群，始祖蚩尤遗迹，国家AAAA景区</li>
                         <li>5.【酉阳桃花源景区 】陶渊明笔下【桃花源记】的原型,龚滩古镇,乌江画廊</li>
-                    </div> */}
+                    </div>
                     </div>
                 </div>
                 <h2>吃重庆必吃榜</h2>
@@ -163,7 +195,7 @@ function Hometown() {
                             <img className="eat-img" src="https://img1.baidu.com/it/u=2818896431,1150756753&fm=253&fmt=auto&app=138&f=JPEG?w=692&h=500"></img>
                             <p className="eat-name">毛血旺</p>
                         </div>
-                        <div className="eat-video-overlay">
+                        <div className={`eat-video-overlay`}>
                             <video className="vehicle-item-video" poster="https://img1.baidu.com/it/u=2818896431,1150756753&fm=253&fmt=auto&app=138&f=JPEG?w=692&h=500" playsInline autoPlay loop muted>
                                 <source src="https://www.nio.cn/cdn-static/www/index/video/et7.mp4" type="video/mp4" />
                             </video>
@@ -189,16 +221,17 @@ function Hometown() {
                             <img className="eat-img" src="https://img1.baidu.com/it/u=2818896431,1150756753&fm=253&fmt=auto&app=138&f=JPEG?w=692&h=500"></img>
                             <p className="eat-name">毛血旺</p>
                         </div>
-                        {/* <div className="eat-video-overlay">
+                        <div className="eat-video-overlay">
                             <video className="vehicle-item-video" poster="https://img1.baidu.com/it/u=2818896431,1150756753&fm=253&fmt=auto&app=138&f=JPEG?w=692&h=500" playsInline autoPlay loop muted>
                                 <source src="https://www.nio.cn/cdn-static/www/index/video/et7.mp4" type="video/mp4" />
                             </video>
                             <p className="vehicle-item-video-title">READY FOR TOMORROW</p>
-                        </div> */}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> */}
     </div>
 }
+
 export default Hometown
