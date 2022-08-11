@@ -5,8 +5,9 @@ import positionIcon from '@/assets/images/position.png'
 import point1Icon from '@/assets/images/point1.png'
 import point2Icon from '@/assets/images/point2.png'
 import userPhoto from '@/assets/images/user_photo.png'
-import React, { useState } from "react"
+import React, {useState} from "react"
 import downloadPDF from '@/utils/html2pdf'
+
 function handleDownload() {
     const pdfDom = $('.container_content')[0]
     pdfDom.style.background = "#FFFFFF";
@@ -14,6 +15,7 @@ function handleDownload() {
         pdfDom.style.background = "#F4F7FA";
     })
 }
+
 function getBase64Image(url, dom) {
     const image = new Image();
     image.setAttribute("crossOrigin", 'Anonymous')
@@ -28,13 +30,14 @@ function getBase64Image(url, dom) {
         $(dom).src = dataURL
     }
 }
+
 function PersonalResume() {
     const workStatus = {
         '0': '入职',
         '1': '转正',
         '2': '离职',
     }
-    let [positonChangeList, setPositonChangeList] = useState([{
+    let [positionChangeList, setPositionChangeList] = useState([{
         level: '入',
         time: '2019-11-12',
         companyName: '南通启智网络有限公司',
@@ -53,7 +56,7 @@ function PersonalResume() {
         positionName: '前端开发工程师',
         status: '2'
     }])
-    const potionDiv = positonChangeList.map((item, index) => {
+    const potionDiv = positionChangeList.map((item, index) => {
         return <div className="step_content" key={index}>
             <div className="step_item">
                 <span className="position_level">{item.level}</span>
@@ -65,7 +68,8 @@ function PersonalResume() {
                 <div className={['org_position_box', item.status === '2' && 'leave_box'].join(' ')}>
                     <span className="org_name">{item.companyName} —— </span>
                     <span className="position">{item.positionName}</span>
-                    <span className={['type', item.status === '2' && 'leave'].join(' ')} > —— {workStatus[item.status]}</span>
+                    <span
+                        className={['type', item.status === '2' && 'leave'].join(' ')}> —— {workStatus[item.status]}</span>
                 </div>
             </div>
         </div>
@@ -74,7 +78,7 @@ function PersonalResume() {
     return <div className='container'>
         <div className='container_content'>
             <div id="personal_photo">
-                <div className="personal_photo"><img id="topPhoto" src={userPhoto} /></div>
+                <div className="personal_photo"><img id="topPhoto" src={userPhoto}/></div>
                 <div className="user">
                     <span className="user_name">xxxx</span>
                     <span className="user_age">年龄：25</span>
@@ -89,34 +93,67 @@ function PersonalResume() {
                 </div>
                 <table className="personal_table">
                     <tr>
-                        <td><div><span className="item_name">姓名</span><span className="item_value">xxx</span></div></td>
-                        <td><div><span className="item_name">性别</span><span className="item_value">xxx</span></div></td>
-                        <td><div><span className="item_name">爱好</span><span className="item_value">xxx</span></div></td>
+                        <td>
+                            <div><span className="item_name">姓名</span><span className="item_value">xxx</span></div>
+                        </td>
+                        <td>
+                            <div><span className="item_name">性别</span><span className="item_value">xxx</span></div>
+                        </td>
+                        <td>
+                            <div><span className="item_name">爱好</span><span className="item_value">xxx</span></div>
+                        </td>
                     </tr>
                     <tr>
-                        <td><div><span className="item_name">出生日期</span><span className="item_value">xxx</span></div></td>
-                        <td><div><span className="item_name">年龄</span><span className="item_value">xxx</span></div></td>
-                        <td><div><span className="item_name">状态</span><span className="item_value">xxx</span></div></td>
+                        <td>
+                            <div><span className="item_name">出生日期</span><span className="item_value">xxx</span></div>
+                        </td>
+                        <td>
+                            <div><span className="item_name">年龄</span><span className="item_value">xxx</span></div>
+                        </td>
+                        <td>
+                            <div><span className="item_name">状态</span><span className="item_value">xxx</span></div>
+                        </td>
                     </tr>
                     <tr>
-                        <td><div><span className="item_name">证件类型</span><span className="item_value">xxx</span></div></td>
-                        <td><div><span className="item_name">证件号码</span><span className="item_value">xxx</span></div></td>
-                        <td><div><span className="item_name">婚育状况</span><span className="item_value">xxx</span></div></td>
+                        <td>
+                            <div><span className="item_name">证件类型</span><span className="item_value">xxx</span></div>
+                        </td>
+                        <td>
+                            <div><span className="item_name">证件号码</span><span className="item_value">xxx</span></div>
+                        </td>
+                        <td>
+                            <div><span className="item_name">婚育状况</span><span className="item_value">xxx</span></div>
+                        </td>
                     </tr>
                     <tr>
-                        <td><div><span className="item_name">手机号码</span><span className="item_value">xxx</span></div></td>
-                        <td><div><span className="item_name">紧急联系人</span><span className="item_value">xxx</span></div></td>
-                        <td><div><span className="item_name">紧急联系人电话</span><span className="item_value">xxx</span></div></td>
+                        <td>
+                            <div><span className="item_name">手机号码</span><span className="item_value">xxx</span></div>
+                        </td>
+                        <td>
+                            <div><span className="item_name">紧急联系人</span><span className="item_value">xxx</span></div>
+                        </td>
+                        <td>
+                            <div><span className="item_name">紧急联系人电话</span><span className="item_value">xxx</span></div>
+                        </td>
                     </tr>
                     <tr>
-                        <td><div><span className="item_name">户籍所在地</span><span className="item_value">xxx</span></div></td>
-                        <td><div><span className="item_name">户口性质</span><span className="item_value">xxx</span></div></td>
-                        <td><div><span className="item_name">籍贯</span><span className="item_value">xxx</span></div></td>
+                        <td>
+                            <div><span className="item_name">户籍所在地</span><span className="item_value">xxx</span></div>
+                        </td>
+                        <td>
+                            <div><span className="item_name">户口性质</span><span className="item_value">xxx</span></div>
+                        </td>
+                        <td>
+                            <div><span className="item_name">籍贯</span><span className="item_value">xxx</span></div>
+                        </td>
                     </tr>
                     <tr>
-                        <td><div><span className="item_name">民族</span><span className="item_value">xxx</span></div></td>
-                        <td><div><span className="item_name">家庭住址</span><span className="item_value">xxx</span></div></td>
-                        <td></td>
+                        <td>
+                            <div><span className="item_name">民族</span><span className="item_value">xxx</span></div>
+                        </td>
+                        <td colSpan={2}>
+                            <div><span className="item_name">家庭住址</span><span className="item_value">xxx</span></div>
+                        </td>
                     </tr>
                 </table>
             </div>

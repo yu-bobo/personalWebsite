@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, {useEffect, useState, useRef} from "react";
 import './index.less'
-import { getCityInfo } from "@/request/api"
+import {getCityInfo} from "@/request/api"
 
 function handleMouseListener() {
     $('.eat-contentbox')[0]?.addEventListener('mouseenter', (e) => {
@@ -18,11 +18,10 @@ function handleMouseListener() {
 function Hometown() {
     const [cityInfo, setCityInfo] = useState([])
     const canSlide = useRef(false)
-    const maginLeft = useRef(0)
+    const marginLeft = useRef(0)
     const contentReact = useRef()
     const contentBoxReact = useRef()
     const isBottom = useRef(false)
-    const dom = useRef()
 
     useEffect(() => {
         async function fetchData() {
@@ -50,13 +49,13 @@ function Hometown() {
                 canSlide.current = true
             }
 
-            if ((scrollT < centerInstance) && maginLeft.current < 0) {
+            if ((scrollT < centerInstance) && marginLeft.current < 0) {
                 $(document).scrollTop(centerInstance)
                 canSlide.current = true
             }
         }
 
-        // 监听鼠标滚轮事件 
+        // 监听鼠标滚轮事件
         window.onmousewheel = (e) => {
             // todo 根据鼠标滚动改变滚动条距离
             if (e.wheelDelta < 0) {
@@ -66,22 +65,29 @@ function Hometown() {
             }
             if (e.wheelDelta < 0 && canSlide.current) {
                 // 判断横向滚动是否滚动到底部
-                if (maginLeft.current + contentBoxReact.current <= contentReact.current.width) {
+                if (marginLeft.current + contentBoxReact.current <= contentReact.current.width) {
                     isBottom.current = true
                 } else {
-                    maginLeft.current -= 20
-                    $('.slide-content-box')[0].style.marginLeft = maginLeft.current + 'px'
+                    marginLeft.current -= 20
+                    $('.slide-content-box')[0].style.marginLeft = marginLeft.current + 'px'
                 }
             }
-            if (e.wheelDelta > 0 && maginLeft.current < 0 && canSlide.current) {
+            if (e.wheelDelta > 0 && marginLeft.current < 0 && canSlide.current) {
                 isBottom.current = false
-                maginLeft.current += 20
-                $('.slide-content-box')[0].style.marginLeft = maginLeft.current + 'px'
+                marginLeft.current += 20
+                $('.slide-content-box')[0].style.marginLeft = marginLeft.current + 'px'
             }
         }
         return () => {
+            console.log('我被卸载了')
             // 移除监听
-            // window.removeEventListener('onScroll', handleScroll)
+            window.removeEventListener('onmousewheel', (e) => {
+                console.log(e)
+                console.log('移除监听')
+            },false)
+            window.removeEventListener('onscroll', () => {
+                console.log('移除监听')
+            })
         };
     }, []);
     const cityItem = cityInfo.map((item, itemIndex) => {
@@ -91,7 +97,7 @@ function Hometown() {
                 <div className="city-img"><img src={item.cityImg}></img></div>
                 <div className="city-description">
                     {item.cityDes.map((des, desIndex) => {
-                        return <div key={desIndex}><p>{des}</p><br /></div>
+                        return <div key={desIndex}><p>{des}</p><br/></div>
                     })}
                 </div>
             </div>
@@ -121,8 +127,9 @@ function Hometown() {
                                 <p className="eat-name">{eat.eatName}</p>
                             </div>
                             <div className="eat-video-overlay">
-                                <video className="vehicle-item-video" poster={eat.eatImg} playsInline autoPlay loop muted>
-                                    <source src={eat.videoUrl} type="video/mp4" />
+                                <video className="vehicle-item-video" poster={eat.eatImg} playsInline autoPlay loop
+                                       muted>
+                                    <source src={eat.videoUrl} type="video/mp4"/>
                                 </video>
                                 <p className="vehicle-item-video-title">{eat.videoTitle}</p>
                             </div>
