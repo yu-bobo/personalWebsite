@@ -1,8 +1,9 @@
 .edu-content {
+  margin: 0 420px;
+
   .edu-school {
-    margin: 0 auto;
     display: flex;
-    width: 1080px;
+    width: 100%;
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -13,6 +14,7 @@
 
     .school-img-box {
       position: relative;
+
       .school-logo {
         position: absolute;
         top: 10px;
@@ -30,6 +32,37 @@
         font-weight: normal;
         text-indent: 2em;
         letter-spacing: normal;
+      }
+    }
+  }
+
+  .edu-youth {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    .youth-title {
+      display: inline-block;
+      left: 50%;
+      margin: 20px auto;
+    }
+
+    .youth-img-box {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+
+      .youth-img {
+        width: 450px;
+        height: 300px;
+        margin-bottom: 20px;
+
+        img {
+          width: inherit;
+          height: inherit;
+        }
       }
     }
   }
