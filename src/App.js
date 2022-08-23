@@ -1,10 +1,10 @@
 import React from 'react';
-import Routers from './router/index'
+import Routers from './router/index';
 
 function App() {
-  return (
-    <Routers/>
-  );
+	return (
+		<Routers/>
+	);
 }
 
 export default App;
