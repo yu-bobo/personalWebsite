@@ -1,8 +1,8 @@
-const axios = require('axios');
+const axios = require('axios')
 const serive = axios.create({
-	// baseURL: 'http://localhost:3000/',
+	baseURL: 'http://localhost:3000/',
 	timeout: 5000,
-});
+})
 // 状态码返回
 const MESSAGE = {
 	400: '发出的请求有错误，服务器没有进行新建或修改数据的操作。',
@@ -18,38 +18,38 @@ const MESSAGE = {
 	503: '服务不可用，服务器暂时过载或维护。',
 	504: '网关超时。',
 	505: 'HTTP版本不受支持',
-};
+}
 serive.interceptors.request.use(function(config) {
 	if (config.formatData) {
 		config.transformRequest = [function(data) {// 当以data传值转成表单数据格式(formdata请求)
-			let html = '';
+			let html = ''
 			for (const item in data) {
-				html += `${item}=${data[item] === 0 ? 0 : (data[item] || '')}&`;
+				html += `${item}=${data[item] === 0 ? 0 : (data[item] || '')}&`
 			}
-			html = html.substring(0, html.lastIndexOf('&'));
-			return html;
-		}];
+			html = html.substring(0, html.lastIndexOf('&'))
+			return html
+		}]
 	}
 	if (config.contentType) {
-		config.headers['Content-Type'] = config.contentType;
+		config.headers['Content-Type'] = config.contentType
 	}
-	return config;
+	return config
 }, function(error) {
-	return Promise.reject(error);
-});
+	return Promise.reject(error)
+})
 
 // 响应拦截
 serive.interceptors.response.use(
 	(response) => {
-		const {data = {}, config = {}} = response;
-		if (data.code === 200) {
-			return data;
+		const {data = {}, config = {}} = response
+		if (data.status === 200) {
+			return data
 		} else {
-			return Promise.reject({'API': `${config.url}`, 'message': '接口数据请求失败！'});
+			return Promise.reject({'API': `${config.url}`, 'message': '接口数据请求失败！'})
 		}
 	}, (error) => {
-		const {response = {}} = error;
-		return Promise.reject({'status': response.status, 'message': MESSAGE[response.status]});
+		const {response = {}} = error
+		return Promise.reject({'status': response.status, 'message': MESSAGE[response.status]})
 	}
-);
-export default serive;
+)
+export default serive

@@ -1,5 +1,5 @@
-import './index.less';
-import React from 'react';
+import './index.less'
+import React from 'react'
 
 function Waves() {
 	return <div className="waves-box">
@@ -25,7 +25,7 @@ function Waves() {
 				<use xlinkHref="#gentle-wave" x="48" y="7" fill="#fff"/>
 			</g>
 		</svg>
-	</div>;
+	</div>
 }
 
-export default Waves;
+export default Waves

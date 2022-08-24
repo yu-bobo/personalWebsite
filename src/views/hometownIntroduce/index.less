@@ -1,214 +1,213 @@
 .home-content {
-    padding: 0 200px;
+  padding: 0 200px;
 
-    .city-item {
-        .city-name {
-            display: inline-block;
-            margin: 10px;
+  .city-item {
+    .city-name {
+      display: inline-block;
+      margin: 10px;
 
-            span {
-                font-size: 16px;
-            }
+      span {
+        font-size: 16px;
+      }
+    }
+
+    .city-introduce {
+      position: relative;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+
+      .city-img {
+        width: 680px;
+        height: 383px;
+
+        img {
+          width: inherit;
+          height: inherit;
+          border-radius: 5px;
         }
+      }
 
-        .city-introduce {
+      .city-description {
+        margin-left: 100px;
+        flex: 1;
+
+        p {
+          text-indent: 24px;
+          letter-spacing: 0.1rem;
+        }
+      }
+    }
+
+    .city-play {
+      h2 {
+        display: block;
+        margin: 0 auto;
+        margin-top: 30px;
+        width: 200px;
+        text-align: center;
+        overflow: hidden;
+
+        &::first-letter {
+          font-size: 30px;
+          font-weight: 800;
+          margin-right: 10px;
+        }
+      }
+
+      .slide-content {
+        width: 100%;
+        overflow: hidden;
+
+        .slide-content-box {
+          white-space: nowrap;
+          overflow: auto;
+          overflow-x: auto;
+          display: flex;
+          align-items: center;
+          height: 650px;
+          transition: all 0.5s ease-in-out;
+
+          .slide-content-item {
+            display: inline-block;
             position: relative;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
 
-            .city-img {
-                width: 680px;
-                height: 383px;
+            .images-box {
+              width: 640px;
+              height: 540px;
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: space-between;
+              align-items: center;
+              flex-direction: column;
+
+              .img {
+                width: 300px;
+                height: 200px;
+                cursor: pointer;
 
                 img {
-                    width: inherit;
-                    height: inherit;
-                    border-radius: 5px;
+                  width: inherit;
+                  height: inherit;
+                  border-radius: 10px;
+                  transition: all 0.5s;
+
+                  &:hover {
+                    transform: scale(1.45);
+                    // z-index: 9999;
+                  }
                 }
+              }
             }
 
-            .city-description {
-                margin-left: 100px;
-                flex: 1;
+            .img-description {
+              position: absolute;
+              height: 80px;
+              top: 0;
+              right: 0;
+              left: 0;
+              bottom: 0;
+              margin: auto;
+              display: flex;
+              align-items: center;
+              flex-direction: column;
+              justify-content: center;
 
-                p {
-                    text-indent: 24px;
-                    letter-spacing: .1rem;
-                }
-            }
-        }
-
-        .city-play {
-            h2 {
-                display: block;
-                margin: 0 auto;
-                margin-top: 30px;
-                width: 200px;
-                text-align: center;
-                overflow: hidden;
-
-                &::first-letter {
-                    font-size: 30px;
-                    font-weight: 800;
-                    margin-right: 10px;
-                }
-            }
-
-            .slide-content {
+              p {
                 width: 100%;
-                overflow: hidden;
+                text-align: center;
+              }
+            }
+          }
+        }
+      }
 
-                .slide-content-box {
-                    white-space: nowrap;
-                    overflow: auto;
-                    overflow-x: auto;
-                    display: flex;
-                    align-items: center;
-                    height: 650px;
-                    transition: all .5s ease-in-out;
+      .eat-contentbox {
+        position: relative;
+        width: 1000px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: auto;
+        margin-top: 30px;
 
-                    .slide-content-item {
-                        display: inline-block;
-                        position: relative;
+        .eat-item {
+          position: relative;
+          width: 500px;
+          height: 500px;
+          display: flex;
+          justify-content: center;
 
-                        .images-box {
-                            width: 640px;
-                            height: 540px;
-                            display: flex;
-                            flex-wrap: wrap;
-                            justify-content: space-between;
-                            align-items: center;
-                            flex-direction: column;
+          .eat-img-static {
+            width: 300px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
 
-                            .img {
-                                width: 300px;
-                                height: 200px;
-                                cursor: pointer;
-
-                                img {
-                                    width: inherit;
-                                    height: inherit;
-                                    border-radius: 10px;
-                                    transition: all .5;
-
-                                    &:hover {
-                                        transform: scale(1.45);
-                                        // z-index: 9999;
-                                    }
-                                }
-                            }
-
-
-                        }
-
-                        .img-description {
-                            position: absolute;
-                            height: 80px;
-                            top: 0;
-                            right: 0;
-                            left: 0;
-                            bottom: 0;
-                            margin: auto;
-                            display: flex;
-                            align-items: center;
-                            flex-direction: column;
-                            justify-content: center;
-
-                            p {
-                                width: 100%;
-                                text-align: center;
-                            }
-                        }
-                    }
-
-
-                }
-
+            .eat-rank {
+              height: 50px;
+              line-height: 50px;
+              display: inline-block;
+              font-weight: 600;
+              font-size: 25px;
             }
 
-            .eat-contentbox {
-                position: relative;
-                width: 1000px;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                flex-wrap: wrap;
-                margin: auto;
-                margin-top: 30px;
-
-                .eat-item {
-                    position: relative;
-                    width: 500px;
-                    height: 500px;
-                    display: flex;
-                    justify-content: center;
-
-                    .eat-img-static {
-                        width: 300px;
-                        display: flex;
-                        align-items: center;
-                        flex-direction: column;
-                        justify-content: center;
-
-                        .eat-rank {
-                            height: 50px;
-                            line-height: 50px;
-                            display: inline-block;
-                            font-weight: 600;
-                            font-size: 25px;
-                        }
-
-                        .eat-img {
-                            width: 300px;
-                            height: 300px;
-                        }
-
-                        .eat-name {
-                            height: 40px;
-                            line-height: 40px;
-                            font-size: 18px;
-                        }
-
-                    }
-
-                    .eat-video-overlay {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 500px;
-                        display: none;
-                        cursor: pointer;
-
-                        .vehicle-item-video {
-                            width: 100%;
-                            height: 100%;
-                            object-fit: cover
-                        }
-
-                        .vehicle-item-video-title {
-                            position: absolute;
-                            color: white;
-                            font-size: 18px;
-                            font-weight: 300;
-                            top: 0;
-                            left: 0;
-                            right: 0;
-                            bottom: 0;
-                            margin:  auto;
-                            height: 30px;
-                            line-height: 30px;
-                            text-align: center;
-                        }
-                    }
-                    .eat-video-overlay-show{
-                        display: block;
-                    }
-                }
+            .eat-img {
+              width: 300px;
+              height: 300px;
             }
 
+            .eat-name {
+              height: 40px;
+              line-height: 40px;
+              font-size: 18px;
+            }
+          }
+
+          .eat-video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 500px;
+            display: none;
+            cursor: pointer;
+
+            .vehicle-item-video {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+
+            .vehicle-item-video-title {
+              position: absolute;
+              color: white;
+              font-size: 18px;
+              font-weight: 300;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              margin: auto;
+              height: 30px;
+              line-height: 30px;
+              text-align: center;
+            }
+          }
+
+          .eat-video-overlay-show {
+            display: block;
+          }
         }
 
+        :hover {
+          .eat-video-overlay {
+            display: block;
+          }
+        }
+      }
     }
+  }
 }

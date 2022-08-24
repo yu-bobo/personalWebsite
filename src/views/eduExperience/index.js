@@ -1,40 +1,40 @@
-import React, {useEffect, useState} from 'react';
-import {isEnterViewport} from '@/utils/handleUtils';
-import 'animate.css';
-import './index.less';
+import React, {useEffect, useState} from 'react'
+import {isEnterViewport} from '@/utils/handleUtils'
+import 'animate.css'
+import './index.less'
 
 function EduExperience() {
-	const youthImgList = ['https://www.ntit.edu.cn/_upload/article/images/4a/bb/02132ff048728dafe81d67d1554a/97d6aca4-fd0e-400b-81cf-42751d2af8f9.jpg', 'https://www.ntit.edu.cn/_upload/article/images/4a/bb/02132ff048728dafe81d67d1554a/336f8aca-face-4ce0-89a0-9a710fbbf675.jpg', 'https://www.ntit.edu.cn/_upload/article/images/4a/bb/02132ff048728dafe81d67d1554a/2ef41355-6810-4af6-b9b3-466bd096984a.jpg', 'https://www.ntit.edu.cn/_upload/article/images/4a/bb/02132ff048728dafe81d67d1554a/ee2f29b3-c89e-42d3-9450-1356428f1cfc.jpg'];
-	const [viewpointArr, setViewpointArr] = useState([]);
+	const youthImgList = ['https://www.ntit.edu.cn/_upload/article/images/4a/bb/02132ff048728dafe81d67d1554a/97d6aca4-fd0e-400b-81cf-42751d2af8f9.jpg', 'https://www.ntit.edu.cn/_upload/article/images/4a/bb/02132ff048728dafe81d67d1554a/336f8aca-face-4ce0-89a0-9a710fbbf675.jpg', 'https://www.ntit.edu.cn/_upload/article/images/4a/bb/02132ff048728dafe81d67d1554a/2ef41355-6810-4af6-b9b3-466bd096984a.jpg', 'https://www.ntit.edu.cn/_upload/article/images/4a/bb/02132ff048728dafe81d67d1554a/ee2f29b3-c89e-42d3-9450-1356428f1cfc.jpg']
+	const [viewpointArr, setViewpointArr] = useState([])
 	const getYouthImgClassName = (index) => {
-		let youthImgClassName = 'youth-img animate__animated ';
+		let youthImgClassName = 'youth-img animate__animated '
 		if (index % 2 === 0) {
-			youthImgClassName += viewpointArr[index] ? 'animate__fadeInLeft' : 'animate__fadeOutLeft';
+			youthImgClassName += viewpointArr[index] ? 'animate__fadeInLeft' : 'animate__fadeOutLeft'
 		} else {
-			youthImgClassName += viewpointArr[index] ? 'animate__fadeInRight' : 'animate__fadeOutRight';
+			youthImgClassName += viewpointArr[index] ? 'animate__fadeInRight' : 'animate__fadeOutRight'
 		}
-		return youthImgClassName;
-	};
+		return youthImgClassName
+	}
 	useEffect(() => {
-		const $targets = $('.youth-img');
+		const $targets = $('.youth-img')
 		$(window).on('scroll', () => {
-			const targetStatus = [];
+			const targetStatus = []
 			$targets.each((index, element) => {
-				targetStatus.push(isEnterViewport(element));
-			});
-			setViewpointArr(targetStatus);
-		});
+				targetStatus.push(isEnterViewport(element))
+			})
+			setViewpointArr(targetStatus)
+		})
 		// return () => {
 		//     window.removeEventListener('onscroll')
 		// };
-	}, []);
+	}, [])
 	const youthImgDom = youthImgList.map((imgSrc, index) => {
 		return (
 			<div key={index} className={getYouthImgClassName(index)}>
 				<img src={imgSrc} alt="youth campus"/>
 			</div>
-		);
-	});
+		)
+	})
 	return (
 		<div className="edu-content">
 			<div className="edu-school">
@@ -58,7 +58,7 @@ function EduExperience() {
 				<div className="youth-img-box">{youthImgDom}</div>
 			</div>
 		</div>
-	);
+	)
 }
 
-export default EduExperience;
+export default EduExperience

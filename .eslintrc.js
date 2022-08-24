@@ -9,7 +9,7 @@ module.exports = {
     ],
     'overrides': [],
     'parserOptions': {
-        'ecmaVersion': 2015,
+        'ecmaVersion': 2020,
         'sourceType': 'module',
     },
     'plugins': [
@@ -37,7 +37,7 @@ module.exports = {
         ],
         'semi': [
             'warn',
-			// 'never'
+			'never'
             //不加分号
         ],
         'max-len': ["error", {code: 300}]
