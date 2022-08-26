@@ -9,3 +9,9 @@ export const getCityInfo = (url, data) => {
 	// return serive.get('/mock/cityinfo');
 	return serive.get('/hometown/getHometownInfo')
 }
+// 获取学校简介
+
+export const getSchoolInfo = (url, data) => {
+	// return serive.get('/mock/cityinfo');
+	return serive.get('/school/getSchoolInfo')
+}

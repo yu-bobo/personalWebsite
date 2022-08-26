@@ -1,6 +1,6 @@
 const axios = require('axios')
 const serive = axios.create({
-	baseURL: 'http://localhost:3000/',
+	baseURL: 'api/',
 	timeout: 5000,
 })
 // 状态码返回

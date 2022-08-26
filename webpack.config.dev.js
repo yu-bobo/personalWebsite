@@ -12,6 +12,13 @@ module.exports = {
 				{from: /^\/$/, to: path.join(__dirname, 'public/index.html')},
 			],
 		},
+		proxy: {
+			'/api': {
+				target: 'http://150.158.185.32:3000', // 代理到的地址
+				changeOrigin: true,
+				pathRewrite: {'^/api': ''},
+			}
+		}
 	},
 	// 打包模式:'production' or development'
 	mode: 'development',
