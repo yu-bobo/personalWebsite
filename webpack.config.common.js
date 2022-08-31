@@ -77,7 +77,7 @@ const webpackConfig = {
 				options: {
 					limit: 8192,
 					name: '[name].[ext]',
-					outputPath: resolve('images'),
+					outputPath: '/images',
 				},
 			},
 			// loader-font

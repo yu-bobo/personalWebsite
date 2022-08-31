@@ -5,6 +5,6 @@ module.exports = {
 	output: {
 		filename: 'scripts/[name].[contenthash].js',
 		// 使用 CDN
-		publicPath: 'http://150.158.185.32/',
+		// publicPath: 'http://150.158.185.32/',
 	},
 }

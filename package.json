@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config ./webpack.config.js --env production",
     "start": "webpack serve --config ./webpack.config.js --env development",
+    "prd": "webpack serve --config ./webpack.config.js --env production",
     "lint": "eslint src",
     "fix": "eslint src --fix"
   },
