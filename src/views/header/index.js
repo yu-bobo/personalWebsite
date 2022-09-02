@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, useLocation} from 'react-router-dom'
 import './index.less'
 
 const navBarList = [{
@@ -37,14 +37,24 @@ function Header() {
 		history(path)
 		setActive(index)
 	}
-
 	useEffect(() => {
 		queryWeather('南京')
 	}, [])
+
+	// 监听路由改变激活项
+	const location = useLocation()
+	useEffect(() => {
+		const {pathname} =location
+		const index = navBarList.findIndex((item) =>item.path === pathname)
+		setActive(index > -1 ? index : 0)
+	}, [location])
+
 	const navList = navBarList.map((item, index) => {
-		return <li key={index} className={active === index ? 'nav-actived' : ''} onClick={() => {
-			handleClick(index, item.path)
-		}}>{item.name}</li>
+		return (
+			<li key={index} className={active === index ? 'nav-actived' : ''} onClick={() => {
+				handleClick(index, item.path)
+			}}>{item.name}</li>
+		)
 	})
 	return (
 		<div className="header">

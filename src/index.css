@@ -1,23 +1,23 @@
 body {
-  position: relative;
-  width: 100%;
-  min-height: 100%;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  color: rgb(112, 36, 36);
-  -webkit-font-smoothing: antialiased;
-  user-select: none;
-  min-width: auto;
-  margin: 0px auto;
-  font: 16px "PingFang SC", "Microsoft YaHei", "Microsoft JhengHei";
-  overflow-y: scroll;
+    position: relative;
+    width: 100%;
+    min-height: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    color: rgb(112, 36, 36);
+    -webkit-font-smoothing: antialiased;
+    user-select: none;
+    min-width: auto;
+    margin: 0 auto;
+    font: 16px "PingFang SC", "Microsoft YaHei", "Microsoft JhengHei";
+    overflow-y: scroll;
 }
 
 ::-webkit-scrollbar {
-  width: 0 !important
+    display: none !important;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
@@ -43,27 +43,27 @@ textarea,
 th,
 td,
 select {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 html,
 body {
-  min-height: 100%;
+    min-height: 100%;
 
 }
 
 body {
-  font-family: "Microsoft YaHei";
+    font-family: "Microsoft YaHei";
 
-  font-size: 14px;
+    font-size: 14px;
 
-  color: #333;
+    color: #333;
 
 }
 
@@ -73,109 +73,109 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: normal;
+    font-weight: normal;
 }
 
 ul,
 ol {
-  list-style: none;
+    list-style: none;
 
 }
 
 img {
-  border: none;
+    border: none;
 
-  vertical-align: middle;
+    vertical-align: middle;
 
 }
 
 a {
-  text-decoration: none;
+    text-decoration: none;
 
-  color: #232323;
+    color: #232323;
 
 }
 
 table {
-  border-collapse: collapse;
+    border-collapse: collapse;
 
-  table-layout: fixed;
+    table-layout: fixed;
 
 }
 
 input,
 textarea {
-  outline: none;
+    outline: none;
 
-  border: none;
+    border: none;
 
 }
 
 textarea {
-  resize: none;
+    resize: none;
 
-  overflow: auto;
+    overflow: auto;
 
 }
 
 .clearfix {
-  zoom: 1;
+    zoom: 1;
 
 }
 
 .clearfix:after {
-  content: ".";
+    content: ".";
 
-  width: 0;
+    width: 0;
 
-  height: 0;
+    height: 0;
 
-  visibility: hidden;
+    visibility: hidden;
 
-  display: block;
+    display: block;
 
-  clear: both;
+    clear: both;
 
-  overflow: hidden;
+    overflow: hidden;
 
 }
 
 .fl {
-  float: left
+    float: left
 }
 
 .fr {
-  float: right
+    float: right
 }
 
 .tl {
-  text-align: left;
+    text-align: left;
 
 }
 
 .tc {
-  text-align: center
+    text-align: center
 }
 
 .tr {
-  text-align: right;
+    text-align: right;
 
 }
 
 .ellipse {
-  overflow: hidden;
+    overflow: hidden;
 
-  text-overflow: ellipsis;
+    text-overflow: ellipsis;
 
-  white-space: nowrap;
+    white-space: nowrap;
 
 }
 
 .inline {
-  display: inline-block;
+    display: inline-block;
 
-  *display: inline;
+    *display: inline;
 
-  *zoom: 1;
+    *zoom: 1;
 
 }
