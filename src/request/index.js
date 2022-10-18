@@ -1,6 +1,6 @@
 const axios = require('axios')
 const serive = axios.create({
-	baseURL: process.env.NODE_ENV === 'production' ? 'http://150.158.185.32/pwa/' : 'api/',
+	baseURL: process.env.NODE_ENV === 'production' ? 'https://www.yuanaliu.com/pwa' : 'api/',
 	timeout: 5000,
 })
 // 状态码返回

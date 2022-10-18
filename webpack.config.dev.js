@@ -14,7 +14,7 @@ module.exports = {
 		},
 		proxy: {
 			'/api': {
-				target: 'http://150.158.185.32:/pwa/', // 代理到的地址
+				target: 'https://www.yuanaliu.com/pwa', // 代理到的地址
 				changeOrigin: true,
 				pathRewrite: {'^/api': ''},
 			}

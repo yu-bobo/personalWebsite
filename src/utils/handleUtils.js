@@ -1,3 +1,4 @@
+// 判断一个元素是否出现在视口
 export const isEnterViewport = (el) => {
 	// const ViewportHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
 	// const ViewportWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
@@ -8,7 +9,12 @@ export const isEnterViewport = (el) => {
 	const scrollTop = document.documentElement.scrollTop
 	return offsetTop - scrollTop <= viewPortHeight - 300
 }
-
+// 判断一个元素是否在屏幕正中间
+export const isCenterViewport = (el) => {
+	const offsetTop = el.offsetTop
+	const scrollTop = document.documentElement.scrollTop
+	return offsetTop - 100 <= scrollTop && scrollTop <= offsetTop + 100
+}
 export const getBase64Image = (url, dom) => {
 	const image = new Image()
 	image.setAttribute('crossOrigin', 'Anonymous')

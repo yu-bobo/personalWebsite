@@ -19,28 +19,10 @@ const navBarList = [{
 function Header() {
 	const [active, setActive] = useState(0)
 	const history = useNavigate()
-
-	function queryWeather(lc) {
-		const url = encodeURI(`http://wthrcdn.etouch.cn/WeatherApi?city=${lc}`)
-		const xhr = new XMLHttpRequest()
-		xhr.open('GET', url)
-		xhr.send()
-		xhr.onreadystatechange = () => {
-			if (xhr.readyState === 4 && xhr.status === 200) {
-				const resp = xhr.responseXML.querySelector('resp')
-				console.log(resp.querySelector('wendu').innerHTML)
-			}
-		}
-	}
-
 	function handleClick(index, path) {
 		history(path)
 		setActive(index)
 	}
-	useEffect(() => {
-		queryWeather('南京')
-	}, [])
-
 	// 监听路由改变激活项
 	const location = useLocation()
 	useEffect(() => {
