@@ -28,6 +28,7 @@ const webpackConfig = {
 		// 为项目生成一个可以访问的html文件，否则全是.js文件，没有访问的页面入口。默认为index.html,路径是基于根目录的相对路径
 		new HtmlWebpackPlugin({
 			template: resolve('public/index.html'), // 引用模板html文件生成项目的入口文件html
+			favicon: resolve('public/favicon.ico') // 设置网站图标
 		}),
 		new MiniCssExtractPlugin({
 			filename: 'styles/[contenthash].css',
@@ -68,27 +69,52 @@ const webpackConfig = {
 					'less-loader',
 				],
 			},
-			// loader-image
+			// 处理图片资源(webpack5新增方式，则不使用url-loader做)
 			{
 				test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+				type: 'asset',
 				exclude: /node_modules/,
 				include: [resolve('src/assets/images')],
-				loader: 'url-loader',
-				options: {
-					limit: 8192,
-					name: '[name].[ext]',
-					outputPath: '/images',
+				generator: {
+					filename: 'images/[name].[hash:10].[ext]'
 				},
+				parser: {
+					dataUrlCondition: {
+						maxSize: 100 * 1024 // 超过100k转base64
+					}
+				}
 			},
-			// loader-font
+			// 处理字体(type属性:asset和asset/resource的区别就是后者只做拷贝不能配置转base64)
 			{
-				test: /\.(woff|eot|ttf|svg|gif)$/,
-				loader: 'url-loader',
-				options: {
-					limit: 8192,
-					name: 'font/[name].[ext]',
+				test: /\.(woff|eot|ttf)$/,
+				type: 'asset/resource',
+				exclude: /node_modules/,
+				include: [resolve('src/assets/font')],
+				generator: {
+					filename: 'font/[hash:10].[ext]'
 				},
 			},
+			// // loader-image
+			// {
+			// 	test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+			// 	exclude: /node_modules/,
+			// 	include: [resolve('src/assets/images')],
+			// 	loader: 'url-loader',
+			// 	options: {
+			// 		limit: 8192,
+			// 		name: '[name].[ext]',
+			// 		outputPath: '/images',
+			// 	},
+			// },
+			// // loader-font
+			// {
+			// 	test: /\.(woff|eot|ttf|svg|gif)$/,
+			// 	loader: 'url-loader',
+			// 	options: {
+			// 		limit: 8192,
+			// 		name: 'font/[name].[ext]',
+			// 	},
+			// },
 		],
 	},
 
