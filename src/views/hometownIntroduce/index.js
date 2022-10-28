@@ -1,28 +1,27 @@
-import React, {useEffect, useState, useRef, useCallback} from 'react'
+import React, {useEffect, useState, useRef} from 'react'
 import './index.less'
 import {getCityInfo} from '@/request/api'
 import {isCenterViewport} from '@/utils/handleUtils'
 
-
 function Hometown() {
 	const [cityInfo, setCityInfo] = useState([])
-	const marginLeft = useRef(0)
+	const [marginLeft, setMarginLeft] = useState(0)
 	const maxLeft = useRef()
+	const marginLeftRef = useRef()
 	const timer = useRef(true)
 	const handleMouseWheel = (e) => {
 		if (isCenterViewport($('.slide-content')[0])) {
 			// 向下滚
-			if (e.wheelDelta < 0 && marginLeft.current !== maxLeft.current) {
+			if (e.wheelDelta < 0 && marginLeftRef.current > maxLeft.current) {
 				// 判断横向滚动是否滚动到底部
-				marginLeft.current -= 20
-				$('.slide-content-box')[0].style.marginLeft = marginLeft.current + 'px'
+				setMarginLeft((marginLeft) => marginLeft - 20)
 			}
 			// 向上滚动
-			if (e.wheelDelta > 0 && marginLeft.current !== 0) {
-				marginLeft.current += 20
-				$('.slide-content-box')[0].style.marginLeft = marginLeft.current + 'px'
+			if (e.wheelDelta > 0 && marginLeftRef.current < 0) {
+				setMarginLeft((marginLeft) => marginLeft + 20)
 			}
-			if (!(marginLeft.current === 0 || marginLeft.current === maxLeft.current)) {
+			// 阻止滚动条滚动
+			if (maxLeft.current < marginLeftRef.current && marginLeftRef.current < 0) {
 				e.preventDefault()
 			}
 		}
@@ -38,6 +37,9 @@ function Hometown() {
 			timer.current = true
 		}, delay)
 	}
+	useEffect(() => {
+		marginLeftRef.current = marginLeft
+	}, [marginLeft])
 
 	// 设置ref
 	useEffect(() => {
@@ -50,9 +52,8 @@ function Hometown() {
 			setCityInfo(res.data)
 		})
 		window.addEventListener('mousewheel', (e) => {
-			throttle((e) => {
-				handleMouseWheel(e)
-			}, 300)
+			handleMouseWheel(e)
+			// throttle((e) => handleMouseWheel(e), 300)
 		}, {passive: false})
 		return () => {
 			window.removeEventListener('mousewheel', (e) => {
@@ -74,7 +75,7 @@ function Hometown() {
 			<div className="city-play">
 				<h2>玩{item.cityName}必去景点</h2>
 				<div className="slide-content">
-					<div className="slide-content-box">
+					<div className="slide-content-box" style={{marginLeft: marginLeft + 'px'}}>
 						{item.playList.map((play, playIndex) => {
 							return <div className="slide-content-item" key={playIndex}>
 								<div className="img-description">
