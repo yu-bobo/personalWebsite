@@ -44,7 +44,7 @@ function Header() {
 			<nav className="nav">
 				<div className="nav-left">
 					<div className="logo" alt="个人网站"/>
-					<h1>townの小窝</h1>
+					<h1>鱼啵啵の小窝</h1>
 				</div>
 				<ul className="nav-center">
 					{navList}

@@ -7,13 +7,12 @@ import wechatCode from '@/assets/images/wechatCode.jpg'
 function Footer() {
 	return <footer className="footer">
 		<div className='foot-left'>
-			<div className='foot-logo'>
-				<img/>
-				<span>town的小窝</span>
+			<div className='foot-quotes'>
+				<p>“成就感是由己及他的满足，幸福感是由他及己的福报”</p>
 			</div>
 			<div className='foot-copyright'>
-				<p>townの小窝 | 苏ICP备16060150号</p>
-				<p>Copyright © TOWN. All rights reserved.</p>
+				<p>鱼啵啵の小窝 | <a href='https://beian.miit.gov.cn/' >苏ICP备2022043090号</a></p>
+				<p>Copyright ©2022 yu-bobo. All rights reserved</p>
 			</div>
 		</div>
 		<div className='foot-right'>
