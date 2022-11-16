@@ -3,6 +3,7 @@ import './index.less'
 import wechat from '@/assets/images/wechat.png'
 import mail from '@/assets/images/mail.png'
 import wechatCode from '@/assets/images/wechatCode.jpg'
+import beiAn from '@/assets/images/beian.png'
 
 function Footer() {
 	return <footer className="footer">
@@ -11,8 +12,11 @@ function Footer() {
 				<p>“成就感是由己及他的满足，幸福感是由他及己的福报”</p>
 			</div>
 			<div className='foot-copyright'>
-				<p>鱼啵啵の小窝 | <a href='https://beian.miit.gov.cn/' >苏ICP备2022043090号</a></p>
-				<p>Copyright ©2022 yu-bobo. All rights reserved</p>
+				<p>鱼啵啵の小窝 | Copyright ©2022 yu-bobo All rights reserved</p>
+				<p>
+					<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=32010402001419" rel="noreferrer"><img src={beiAn} style={{float: 'left'}} alt="苏公网安备"/>苏公网安备 32010402001419号</a>
+					<a target="_blank" href='https://beian.miit.gov.cn/' rel="noreferrer" style={{marginLeft: '10px'}}>苏ICP备2022043090号</a>
+				</p>
 			</div>
 		</div>
 		<div className='foot-right'>
