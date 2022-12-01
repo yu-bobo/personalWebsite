@@ -14,7 +14,8 @@ const workStatus = {
 	'1': '转正',
 	'2': '离职',
 }
-function PersonalResume() {
+function PersonalResume(props) {
+	const {setGrayscale} = props
 	const containerContent = useRef()
 	const [resumeInfo, setResumeInfo] = useState({})
 	const {basicInfo, eduExperience, workExperience} = resumeInfo
@@ -59,6 +60,9 @@ function PersonalResume() {
 		// 获取数据
 		getResumeInfo().then((res) => {
 			setResumeInfo(res.data)
+			// 传递灰度
+			const {grayscale = false} = res.data
+			setGrayscale(grayscale)
 		})
 	}, [])
 

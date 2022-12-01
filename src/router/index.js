@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {
 	BrowserRouter as Router,
 	Routes,
@@ -15,8 +15,9 @@ const Hometown = lazy(() => import('@/views/hometownIntroduce'))
 const EduExperience = lazy(() => import('@/views/eduExperience'))
 
 function AllRouter() {
+	const [grayscale, setGrayscale] = useState()
 	return (
-		<div className="App">
+		<div className="App" style={{filter: grayscale ? 'grayscale(1)' : ''}}>
 			<Router>
 				<Header/>
 				<Suspense
@@ -31,7 +32,7 @@ function AllRouter() {
 						</div>
 					}>
 					<Routes>
-						<Route index element={<PersonalResume/>}/>
+						<Route index element={<PersonalResume setGrayscale={setGrayscale}/>}/>
 						<Route path="/personalResume" element={<PersonalResume/>}/>
 						<Route path="/eduExperience" element={<EduExperience/>}/>
 						<Route path="/hometownIntroduce" element={<Hometown/>}/>
