@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react'
-import {useNavigate, useLocation} from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import './index.less'
 
 const navBarList = [{
@@ -12,22 +12,25 @@ const navBarList = [{
 	name: '家乡简介',
 	path: '/hometownIntroduce',
 }, {
+	name: '爱心❤菜单',
+	path: '/loveRecipe',
+}, {
 	name: '关于',
 	path: '/about',
 }]
 
-function Header() {
+function Header () {
 	const [active, setActive] = useState(0)
 	const history = useNavigate()
-	function handleClick(index, path) {
+	function handleClick (index, path) {
 		history(path)
 		setActive(index)
 	}
 	// 监听路由改变激活项
 	const location = useLocation()
 	useEffect(() => {
-		const {pathname} =location
-		const index = navBarList.findIndex((item) =>item.path === pathname)
+		const { pathname } = location
+		const index = navBarList.findIndex((item) => item.path === pathname)
 		setActive(index > -1 ? index : 0)
 	}, [location])
 
@@ -40,10 +43,10 @@ function Header() {
 	})
 	return (
 		<div className="header">
-			<div className="nav-space"/>
+			<div className="nav-space" />
 			<nav className="nav">
 				<div className="nav-left">
-					<div className="logo" alt="个人网站"/>
+					<div className="logo" alt="个人网站" />
 					<h1>鱼啵啵の小窝</h1>
 				</div>
 				<ul className="nav-center">
@@ -51,7 +54,7 @@ function Header() {
 				</ul>
 				<div className="nav-right">
 					<iframe
-						style={{marginTop: '8px'}}
+						style={{ marginTop: '8px' }}
 						scrolling="no"
 						height="20"
 						frameBorder="0"

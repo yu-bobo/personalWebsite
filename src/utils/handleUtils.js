@@ -19,7 +19,7 @@ export const getBase64Image = (url, dom) => {
 	const image = new Image()
 	image.setAttribute('crossOrigin', 'Anonymous')
 	image.src = url
-	image.onload = function() {
+	image.onload = function () {
 		const canvas = document.createElement('canvas')
 		canvas.width = image.width
 		canvas.height = image.height
@@ -28,4 +28,22 @@ export const getBase64Image = (url, dom) => {
 		const dataURL = canvas.toDataURL('image/png') // 可选其他值 image/jpeg
 		$(dom).src = dataURL
 	}
+}
+// randomInt 函数返回一个大于等于 min，小于 max 的随机整数
+export function randomInt (min, max) {
+	const p = Math.random()
+	return Math.floor(min * (1 - p) + max * p)
+}
+// 随机选中数组中的一项(保证连续两次选择不会相同)
+export function createRandomPicker (arr) {
+	arr = [...arr] // copy 数组，以免修改原始数据
+	function randomPick () {
+		const len = arr.length - 1
+		const index = randomInt(0, len)
+		const picked = arr[index];
+		[arr[index], arr[len]] = [arr[len], arr[index]]
+		return picked
+	}
+	randomPick() // 抛弃第一次选择结果
+	return randomPick
 }
